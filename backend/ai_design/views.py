@@ -2,6 +2,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.core.files.storage import default_storage
 from django.http import HttpResponse
+from PIL import Image
+import base64
+from io import BytesIO
 
 @api_view(['POST'])
 def upload_image(request):

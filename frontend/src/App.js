@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import API_BASE_URL from "./config";
+import UploadForm from "./components/UploadForm";
 
 function App() {
     const [image, setImage] = useState(null);
@@ -30,10 +31,11 @@ function App() {
     };
 
     return (
-        <div>
+        <div className="min-h-screen bg-gray-100">
             <h1>AI Interior Design</h1>
             <input type="file" onChange={handleImageUpload} />
             <button onClick={uploadImage}>Upload</button>
+            <UploadForm/>
             <p>{message}</p>
         </div>
     );
