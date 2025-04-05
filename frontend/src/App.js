@@ -138,3 +138,5 @@ function App() {
 }
 
 export default App;
+const result = await response.json();
+console.log(result);
