@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import saveDesign from "./utils/firestore"; 
 import axios from 'axios';
+
 
 const DesignForm = () => {
   const [image, setImage] = useState(null);
   const [prompt, setPrompt] = useState('');
+  const [imageUrl, setImageUrl] = useState("");
   const [outputImage, setOutputImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,8 +25,10 @@ const DesignForm = () => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
-      setOutputImage(response.data.output_image || response.data.output_image_url);
+      const generatedImageUrl = response.data.output_image || response.data.output_image_url;
+      setOutputImage(generatedImageUrl);
+      const userId = "testUser123"; // Replace with real user ID if using Firebase Auth
+      await saveDesign(userId, prompt, generatedImageUrl);
     } catch (error) {
       console.error('Error generating design:', error);
     } finally {

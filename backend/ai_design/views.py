@@ -44,13 +44,19 @@ class GenerateDesignView(APIView):
 
     def post(self, request):
         logger.info('Received POST request to generate design')
+        try:
+            image = request.FILES.get('image')
+            prompt = request.data.get('prompt', 'make it modern')
+            
+            if not image:
+                logger.error('No image uploaded')return Response({"error": "No image uploaded."}, status=status.HTTP_400_BAD_REQUEST)
 
-        image = request.FILES.get('image')
-        prompt = request.data.get('prompt', 'make it modern')
-
-        if not image:
-            logger.error('No image uploaded')
-            return Response({"error": "No image uploaded."}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            # ✅ Catch unexpected errors and return 500
+            return Response(
+                {"error": f"Something went wrong: {str(e)}"},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )        
 
         # Save uploaded image temporarily
         with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_file:
