@@ -5,6 +5,11 @@ class UploadedImage(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
+class DesignImage(models.Model):
+    original_image = models.ImageField(upload_to='uploads/')
+    generated_image = models.ImageField(upload_to='generated/', blank=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
 class DesignRequest(models.Model):
     prompt = models.TextField(blank=True)
     input_image = models.ImageField(upload_to='input_images/', blank=True, null=True)

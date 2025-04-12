@@ -1,61 +1,16 @@
-import React, { useState } from 'react';
+const Home = () => (
+  <div className="flex flex-col items-center justify-center h-[80vh] text-center px-4">
+    <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">Transform Your Room with AI</h1>
+    <p className="text-lg md:text-xl max-w-xl mb-6">
+      Upload a photo of your room and let our AI generate stunning interior design ideas instantly.
+    </p>
+    <a
+      href="/generate"
+      className="bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-2xl transition"
+    >
+      Try It Now
+    </a>
+  </div>
+);
 
-function HomePage() {
-  const [image, setImage] = useState(null);
-  const [generatedDesign, setGeneratedDesign] = useState(null);
-  const [history, setHistory] = useState([]);
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
-  };
-
-  const handleGenerateDesign = async () => {
-    const formData = new FormData();
-    formData.append("image", image);
-
-    const response = await fetch("http://127.0.0.1:5000/api/generate-design/", {
-      method: "POST",
-      body: formData,
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      setGeneratedDesign(data.generated_image);
-      setHistory((prevHistory) => [...prevHistory, data.generated_image]);
-    } else {
-      console.error("Error generating design");
-    }
-  };
-
-  return (
-    <div>
-      <h1>Upload an Image for AI Design</h1>
-      <input type="file" onChange={handleImageUpload} />
-      <button onClick={handleGenerateDesign}>Generate Design</button>
-
-      {image && <img src={image} alt="Uploaded" width="200" />}
-      {generatedDesign && (
-        <div>
-          <h2>Generated Design:</h2>
-          <img src={generatedDesign} alt="Generated" width="200" />
-        </div>
-      )}
-
-      <div>
-        <h2>Design History</h2>
-        <ul>
-          {history.map((design, index) => (
-            <li key={index}>
-              <img src={design} alt={`Design ${index + 1}`} width="100" />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
-}
-
-export default HomePage;
+export default Home;

@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
-os.environ["REPLICATE_API_TOKEN"] = os.getenv("REPLICATE_API_TOKEN")
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,11 +42,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     'ai_design',
 ]
+
+
+
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -54,11 +63,24 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ] 
+
+CORS_ORIGIN_ALLOW_ALL = True  # Temporary for development
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+CORS_ALLOWED_ORIGINS = [
+    "https://preview--dreamscape-room-builder-ai.lovable.app",
+]
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -66,6 +88,7 @@ ROOT_URLCONF = 'backend.urls'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
@@ -146,7 +169,14 @@ CORS_ALLOW_ALL_ORIGINS = True  # Allow frontend requests
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STABILITY_API_KEY = os.getenv('STABILITY_API_KEY')
+STABILITY_API_KEY = os.getenv('sk-mNzcRYYlkpYsvrFx5t3ZtCFbJBEFJ5mbAWWbeqcXaP3HhW4r')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+ROOT_URLCONF = 'ai_design.urls'  # Should match your project name
+WSGI_APPLICATION = 'ai_design.wsgi.application'
+FILE_UPLOAD_MAX_MEMORY_SIZE = 10485760  # 10MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
+SITE_ID = 1
 
+from django.conf import settings
+from django.conf.urls.static import static
 

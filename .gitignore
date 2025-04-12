@@ -10,7 +10,19 @@ __pycache__/
 *.pyc
 env/
 venv/
-*.sqlite3
+# Django
+db.sqlite3
+/media/
+
+# VSCode
+.vscode/
+
+# Environment
+.env
+
+# Node/React
+frontend/node_modules
+frontend/build
 
 # testing
 /coverage
