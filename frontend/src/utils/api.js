@@ -1,7 +1,18 @@
 import axios from "axios";
 
 // Base URL of your backend API
-const API_BASE_URL = "http://localhost:8000/api";
+const API_BASE_URL = "https://virtual-ai-interior-design.onrender.com";
+
+export async function generateDesign(data) {
+  const response = await fetch(`${hilarious-pony-ff3c99.netlify.app}/generate/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response.json();
+}
 
 // Call to generate design
 export const generateDesign = async (roomType, style) => {

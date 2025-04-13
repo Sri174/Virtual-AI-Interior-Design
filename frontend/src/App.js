@@ -22,6 +22,9 @@ function App() {
   const [generatedImage, setGeneratedImage] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
+
+
   const App = () => {
     return (
       <div style={{ width: '100vw', height: '100vh' }}>

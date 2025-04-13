@@ -11,6 +11,9 @@ const Generate = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  axios.post(`${API_BASE}/generate-design/`, formData)
+
+
   const handleImageChange = (e) => {
     setSelectedImage(e.target.files[0]);
     setGeneratedImage(null); // clear old result
