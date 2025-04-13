@@ -1,5 +1,6 @@
 // src/App.js
 import React, { useState } from 'react';
+import My3DScene from './My3DScene';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
@@ -23,9 +24,9 @@ function App() {
 
   const App = () => {
     return (
-      <div>
+      <div style={{ width: '100vw', height: '100vh' }}>
         <h1>AI Interior Design</h1>
-        <ImageUpload />
+        <My3DScene />
       </div>
     );
   };
