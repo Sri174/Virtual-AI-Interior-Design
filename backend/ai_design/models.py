@@ -1,5 +1,10 @@
 from django.db import models
 
+class InteriorDesign(models.Model):
+    uploaded_image = models.ImageField(upload_to='uploads/')
+    generated_image = models.ImageField(upload_to='generated/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class UploadedImage(models.Model):
     image = models.ImageField(upload_to='uploads/')
     uploaded_at = models.DateTimeField(auto_now_add=True)

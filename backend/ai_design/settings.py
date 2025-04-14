@@ -79,7 +79,7 @@ DATABASES = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "https://preview--dreamscape-room-builder-ai.lovable.app",
+    "https://virtual-ai-interior-designer.vercel.app",
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -88,7 +88,12 @@ ROOT_URLCONF = 'backend.urls'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # This applies authentication
     ),
 }
 

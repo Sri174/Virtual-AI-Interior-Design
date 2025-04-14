@@ -1,40 +1,96 @@
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
-
   return (
-    <nav className="bg-[#2C1F33] text-white px-6 py-4 flex justify-between items-center shadow-md">
-      <Link to="/" className="text-2xl font-bold text-[#CC5500] hover:opacity-90 transition">
-        AI Interior Designer
-      </Link>
-      <div className="space-x-4">
-        {token ? (
-          <>
-            <Link to="/generate" className="hover:text-[#CC5500]">Generate</Link>
-            <Link to="/history" className="hover:text-[#CC5500]">History</Link>
-            <button
-              onClick={handleLogout}
-              className="bg-[#CC5500] px-4 py-2 rounded hover:bg-opacity-80 transition"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" className="hover:text-[#CC5500]">Login</Link>
-            <Link to="/register" className="hover:text-[#CC5500]">Register</Link>
-          </>
-        )}
-      </div>
+    <nav
+      style={{
+        padding: '1rem 0',
+        backgroundColor: '#FFE5B4',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end', // Align items to the right
+          gap: '2rem',
+          alignItems: 'center',
+        }}
+      ></div>
+
+      <ul
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '2rem',
+          marginTop: '1rem',
+          listStyle: 'none',
+        }}
+      >
+        {/* Home Link */}
+        <li>
+          <Link
+            to="/home"
+            style={linkStyle}
+          >
+            Home
+          </Link>
+        </li>
+
+        {/* Login Link */}
+        <li>
+          <Link
+            to="/login"
+            style={linkStyle}
+          >
+            Login
+          </Link>
+        </li>
+
+        {/* Register Link */}
+        <li>
+          <Link
+            to="/register"
+            style={linkStyle}
+          >
+            Register
+          </Link>
+        </li>
+
+        {/* Generate Link */}
+        <li>
+          <Link
+            to="/generate"
+            style={linkStyle}
+          >
+            Generate
+          </Link>
+        </li>
+
+        {/* History Link */}
+        <li>
+          <Link
+            to="/history"
+            style={linkStyle}
+          >
+            History
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
+};
+
+// Reusable styles for links
+const linkStyle = {
+  textDecoration: 'none',
+  backgroundColor: '#CC5500', // burnt orange
+  color: 'white',
+  padding: '0.5rem 1rem',
+  borderRadius: '8px',
+  fontWeight: '500',
+  transition: 'all 0.3s ease',
 };
 
 export default Navbar;

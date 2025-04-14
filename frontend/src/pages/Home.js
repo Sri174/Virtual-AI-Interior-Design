@@ -1,27 +1,20 @@
 import Navbar from '../components/Navbar';
-import StyleQuiz from '../components/StyleQuiz';
-import MoodBoard from '../components/MoodBoard';
+import React from 'react';
 
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      
-      <main className="container mx-auto py-8 px-4">
-        <section className="mb-12 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Design Your Dream Space
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Our AI helps you visualize perfect interiors tailored to your style
-          </p>
-        </section>
+const Home = () => (
+  <div className="flex flex-col items-center justify-center h-[80vh] text-center px-4">
+    <div>Welcome to the Home Page!</div>;
+    <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6">Transform Your Room with AI</h1>
+    <p className="text-lg md:text-xl max-w-xl mb-6">
+      Upload a photo of your room and let our AI generate stunning interior design ideas instantly.
+    </p>
+    <a
+      href="/generate"
+      className="bg-primary hover:bg-opacity-90 text-white font-semibold py-3 px-6 rounded-2xl transition"
+    >
+      Try It Now
+    </a>
+  </div>
+);
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <StyleQuiz />
-          <MoodBoard />
-        </div>
-      </main>
-    </div>
-  );
-}
+export default Home;

@@ -5,6 +5,7 @@ import { Box, Text } from '@react-three/drei';
 
 const DesignLayout = ({ layout }) => {
   return (
+    <div>
     <Canvas camera={{ position: [10, 10, 10] }}>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
@@ -28,6 +29,8 @@ const DesignLayout = ({ layout }) => {
         </group>
       ))}
     </Canvas>
+     <img src={`http://localhost:8000${layout.image_url}`} alt="AI Design" width="300" />
+    </div>
   );
 };
 

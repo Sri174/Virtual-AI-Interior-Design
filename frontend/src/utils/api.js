@@ -1,25 +1,15 @@
 import axios from "axios";
 
-// Base URL of your backend API
-const API_BASE_URL = "https://virtual-ai-interior-design.onrender.com";
+// Base URL of your backend API (from .env file)
+export const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
-export async function generateDesign(data) {
-  const response = await fetch(`${hilarious-pony-ff3c99.netlify.app}/generate/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  return response.json();
-}
-
-// Call to generate design
+// Function to generate design
 export const generateDesign = async (roomType, style) => {
   const token = localStorage.getItem("accessToken");
+
   try {
     const response = await axios.post(
-      `${API_BASE_URL}/generate-design/`,
+      `${API_BASE}/generate-design/`,
       { room_type: roomType, style: style },
       {
         headers: {
@@ -28,6 +18,7 @@ export const generateDesign = async (roomType, style) => {
         },
       }
     );
+
     return response.data.image_url;
   } catch (error) {
     console.error("Design generation failed:", error);
