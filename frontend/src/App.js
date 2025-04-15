@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import './index.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import MyDesigns from './components/MyDesigns';
@@ -12,6 +12,21 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Generate from './components/GeneratePage';
 import History from './pages/HistoryPage';
 import ImageUpload from './components/ImageUpload';
+
+
+const Layout = ({ children }) => {
+  const location = useLocation();
+
+  // Hide Navbar only on home page
+  const hideNavbar = location.pathname === "/home";
+
+  return (
+    <>
+      {!hideNavbar && <Navbar />}
+      {children}
+    </>
+  );
+};
 
 function App() {
   const [style, setStyle] = useState('modern');
@@ -26,7 +41,7 @@ function App() {
  
   const handleImageUpload = (uploadedImage) => {
   };
-
+   
   // This will trigger the AI generation process
   const handleGenerateDesign = async () => {
     setLoading(true);
@@ -63,6 +78,8 @@ function App() {
   return (
     <Router>
       <div className="Navbar">
+      <div className="app-background">
+      <div className="app-content">
         <Navbar />
         <div className="nav-links">
         </div>
@@ -79,6 +96,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Routes>
+          
 
           <div className="design-section flex justify-center items-center flex-col text-center mt-10">
             <h1>AI Interior Design</h1>
@@ -159,6 +177,8 @@ function App() {
           </div>
         </div>
       </div>
+      </div>
+    </div>
     </Router>
   );
 }

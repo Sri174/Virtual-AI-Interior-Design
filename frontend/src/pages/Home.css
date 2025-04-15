@@ -1,0 +1,76 @@
+/* src/pages/Home.css */
+.home-container {
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: overlay;
+    padding: 2rem;
+  }
+  
+  .home-container h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .home-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .home-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .get-started-btn {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    background-color: #cc5500;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .get-started-btn:hover {
+    background-color: #b34700;
+  }
+  
+  .highlight {
+    color: #ffd580;
+  }
+  
+  
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.4); /* dark overlay with less opacity */
+    padding: 3rem;
+    border-radius: 12px;
+    text-align: center;
+    color: white;
+  }
+  
+  .home-button {
+    margin-top: 1rem;
+    background-color: #CC5500;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #a64400;
+  }
+  
